@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bioplt"
+version = "1.0.0"
+description = "Matplotlib plotting utilities for biology and bioinformatics visualization, companion to biology-data-viz-seaborn."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "mbilal-OU" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "matplotlib>=3.8",
+    "pillow>=10.0",
+]
+
+[project.urls]
+Repository = "https://github.com/mbilal-OU/biology-data-viz-matplotlib"
+Issues = "https://github.com/mbilal-OU/biology-data-viz-matplotlib/issues"
+
+[tool.setuptools.packages.find]
+include = ["bioplt*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/_build_readme_gallery.py" = ["E501"]

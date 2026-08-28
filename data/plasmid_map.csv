@@ -1,0 +1,8 @@
+gene,category,start_bp,end_bp,strand,color
+ori,ori,0,600,+,#8899AA
+AmpR,resistance,700,1550,-,#C0504D
+lacZ_promoter,promoter,1600,1750,+,#9BBB59
+MCS,MCS,1760,1860,+,#8064A2
+GFP,reporter,1900,2650,+,#4F81BD
+T7_promoter,promoter,2700,2830,-,#9BBB59
+KanR,resistance,3000,3800,+,#C0504D

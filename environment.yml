@@ -1,0 +1,15 @@
+name: bioplt
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - numpy>=1.26
+  - pandas>=2.1
+  - matplotlib>=3.8
+  - pillow>=10.0
+  - jupyter>=1.0
+  - ipykernel>=6.29
+  - pytest>=8.0
+  - pip
+  - pip:
+      - jupytext>=1.16

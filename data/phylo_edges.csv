@@ -1,0 +1,15 @@
+parent,child,branch_length
+root,N1,0.1
+root,N2,0.15
+N1,N3,0.2
+N1,N4,0.25
+N2,Taxon_E,0.4
+N2,N5,0.2
+N3,Taxon_A,0.3
+N3,Taxon_B,0.35
+N4,Taxon_C,0.45
+N4,N6,0.15
+N5,Taxon_F,0.3
+N5,Taxon_G,0.28
+N6,Taxon_D,0.2
+N6,Taxon_H,0.22
