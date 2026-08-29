@@ -1,0 +1,13 @@
+site_name: Scientific Figure Engineering with Matplotlib
+site_description: Tested custom figures for biology, genomics, and bioinformatics
+site_url: https://mbilal-ou.github.io/biology-data-viz-matplotlib/
+repo_url: https://github.com/mbilal-OU/biology-data-viz-matplotlib
+repo_name: mbilal-OU/biology-data-viz-matplotlib
+theme:
+  name: mkdocs
+nav:
+  - Home: index.md
+  - Gallery: gallery.md
+  - Methods: methods.md
+  - Setup: setup.md
+strict: true

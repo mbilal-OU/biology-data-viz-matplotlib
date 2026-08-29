@@ -6,8 +6,8 @@ authors:
   - name: "mbilal-OU"
 repository-code: "https://github.com/mbilal-OU/biology-data-viz-matplotlib"
 license: MIT
-version: 1.0.0
-date-released: "2026-08-28"
+version: 1.1.0
+date-released: "2026-08-29"
 keywords:
   - matplotlib
   - python
@@ -17,3 +17,6 @@ keywords:
   - animation
   - 3d-plots
   - tutorial
+  - pangenome
+  - phylogenomics
+  - synteny

@@ -5,12 +5,14 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 
 CATEGORY_COLORS = {
-    0: "#4C72B0",
-    1: "#DD8452",
-    2: "#55A868",
-    3: "#C44E52",
-    4: "#8172B2",
-    5: "#937860",
+    0: "#0072B2",
+    1: "#D55E00",
+    2: "#009E73",
+    3: "#CC79A7",
+    4: "#E69F00",
+    5: "#56B4E9",
+    6: "#F0E442",
+    7: "#000000",
 }
 SEQUENTIAL_CMAP = "viridis"
 DIVERGING_CMAP = "vlag"
@@ -29,6 +31,9 @@ def set_theme() -> None:
             "figure.dpi": 100,
             "savefig.dpi": DPI_SAVE,
             "savefig.bbox": "tight",
+            "pdf.fonttype": 42,
+            "ps.fonttype": 42,
+            "svg.fonttype": "none",
             "axes.titleweight": "bold",
             "axes.titlesize": 13,
             "axes.labelsize": 11,
@@ -47,6 +52,6 @@ def color_for(index: int) -> str:
     return CATEGORY_COLORS[index % len(CATEGORY_COLORS)]
 
 
-def savefig(fig: plt.Figure, path: str) -> None:
-    """Save a figure at publication resolution with a tight bounding box."""
-    fig.savefig(path, dpi=DPI_SAVE, bbox_inches="tight")
+def savefig(fig: plt.Figure, path: str, *, transparent: bool = False) -> None:
+    """Save a figure with tight bounds in raster or vector formats."""
+    fig.savefig(path, dpi=DPI_SAVE, bbox_inches="tight", transparent=transparent)

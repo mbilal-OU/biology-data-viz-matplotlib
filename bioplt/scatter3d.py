@@ -23,8 +23,13 @@ def docking_scatter_3d(df: pd.DataFrame) -> tuple[plt.Figure, plt.Axes]:
     for i, target in enumerate(targets):
         sub = df[df["target"] == target]
         ax.scatter(
-            sub["logP"], sub["molecular_weight"], sub["vina_score"],
-            label=target, color=theme.color_for(i), alpha=0.7, s=30,
+            sub["logP"],
+            sub["molecular_weight"],
+            sub["vina_score"],
+            label=target,
+            color=theme.color_for(i),
+            alpha=0.7,
+            s=30,
         )
 
     ax.set_xlabel("logP")

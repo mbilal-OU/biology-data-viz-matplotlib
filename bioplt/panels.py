@@ -67,8 +67,12 @@ def qc_dashboard(df: pd.DataFrame) -> plt.Figure:
     for i, batch in enumerate(sorted(df["batch"].unique())):
         sub = df[df["batch"] == batch]
         ax_main.scatter(
-            sub["coverage_mean"], sub["duplicates_pct"],
-            color=theme.color_for(i), alpha=0.7, s=25, label=batch,
+            sub["coverage_mean"],
+            sub["duplicates_pct"],
+            color=theme.color_for(i),
+            alpha=0.7,
+            s=25,
+            label=batch,
         )
     ax_main.set_xlabel("Mean coverage (X)")
     ax_main.set_ylabel("PCR duplicates (%)")

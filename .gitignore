@@ -11,6 +11,9 @@ venv/
 # Jupyter
 .ipynb_checkpoints/
 
+# mkdocs
+site/
+
 # Testing
 .pytest_cache/
 .coverage

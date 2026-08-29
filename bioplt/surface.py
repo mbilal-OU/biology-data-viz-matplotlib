@@ -27,8 +27,13 @@ def enzyme_activity_surface(df: pd.DataFrame) -> plt.Figure:
 
     ax3d = fig.add_subplot(1, 2, 1, projection="3d")
     surf = ax3d.plot_surface(
-        ph_grid, temp_grid, activity_grid, cmap=theme.SEQUENTIAL_CMAP,
-        linewidth=0, antialiased=True, alpha=0.95,
+        ph_grid,
+        temp_grid,
+        activity_grid,
+        cmap=theme.SEQUENTIAL_CMAP,
+        linewidth=0,
+        antialiased=True,
+        alpha=0.95,
     )
     ax3d.set_xlabel("pH")
     ax3d.set_ylabel("Temperature (C)")
@@ -46,8 +51,13 @@ def enzyme_activity_surface(df: pd.DataFrame) -> plt.Figure:
 
     peak_idx = np.unravel_index(np.argmax(activity_grid), activity_grid.shape)
     ax2d.scatter(
-        ph_grid[peak_idx], temp_grid[peak_idx], color="white",
-        edgecolor="black", s=80, zorder=5, marker="*",
+        ph_grid[peak_idx],
+        temp_grid[peak_idx],
+        color="white",
+        edgecolor="black",
+        s=80,
+        zorder=5,
+        marker="*",
     )
 
     fig.tight_layout()
