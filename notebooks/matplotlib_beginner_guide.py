@@ -17,11 +17,11 @@
 import sys
 from pathlib import Path
 
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 sys.path.insert(0, str(Path.cwd().parent))
-from bioplt import theme, scatter3d, panels, animation, surface, diagrams
+from bioplt import animation, diagrams, panels, scatter3d, surface, theme
 
 theme.set_theme()
 DATA = Path.cwd().parent / "data"
@@ -52,8 +52,9 @@ plt.show()
 # best-scoring points cluster in the same logP band regardless of
 # molecular weight, meaning weight is not an independent driver of
 # affinity in this simulated screen. That is itself a useful negative
-# result, and it's a conclusion that's easier to see in 3D than by
-# eyeballing two separate 2D plots.
+# result. The 3D view is useful for exploration, but 2D projections
+# remain preferable when precise comparisons or uncluttered reading
+# are the priority.
 
 # %% [markdown]
 # ## 2. Small Multiples: One Panel Per Gene
@@ -197,7 +198,7 @@ plt.show()
 # ## 7. Manually Drawn Diagram: Phylogenetic Tree
 #
 # **Biological question:** What are the evolutionary relationships and
-# relative divergence times among 8 taxa?
+# root-to-tip branch lengths among 8 taxa?
 #
 # **Why this needs raw Matplotlib:** Rather than calling a dendrogram
 # function (as SciPy or Seaborn's clustermap would), this draws the
@@ -213,13 +214,12 @@ theme.savefig(fig, FIGS / "07_phylo_tree.png")
 plt.show()
 
 # %% [markdown]
-# **Interpretation:** Taxon A and Taxon B are each other's closest
-# relatives, joining at the shallowest branch length in the tree.
-# Taxon C is the deepest-branching member of its clade, splitting off
-# before the E/F/G/H group diversifies further. The x-axis position of
-# each tip directly encodes cumulative evolutionary distance from the
-# root, which is exactly what a phylogenetic tree diagram is meant to
-# show.
+# **Interpretation:** Taxon A and Taxon B are sister tips. Taxon D and
+# Taxon H form a second sister pair, with Taxon C branching before that
+# pair. In the other root clade, Taxon E is sister to the Taxon F and
+# Taxon G pair. Horizontal position encodes cumulative branch length
+# from the root; it is not a divergence time unless the input tree has
+# been calibrated independently.
 
 # %% [markdown]
 # ## Summary

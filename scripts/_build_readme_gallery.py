@@ -34,10 +34,7 @@ SECTIONS = [
         dataset="`data/docking_scores.csv`",
         dataset_desc="360 rows. Simulated virtual-screening results against 3 protein targets.",
         image="figures/01_docking_3d.png",
-        code=(
-            'df = pd.read_csv("data/docking_scores.csv")\n'
-            "fig, ax = scatter3d.docking_scatter_3d(df)"
-        ),
+        code=('df = pd.read_csv("data/docking_scores.csv")\nfig, ax = scatter3d.docking_scatter_3d(df)'),
         interpretation=(
             "The 3D view shows that molecular weight adds little extra "
             "separation beyond what logP already explains: the "
@@ -93,7 +90,7 @@ SECTIONS = [
             "one categorical x column and one continuous y column within each panel",
         ],
         adapt_code=(
-            "groups = my_df[\"panel_column\"].unique()\n"
+            'groups = my_df["panel_column"].unique()\n'
             "fig, axes = plt.subplots(nrows, ncols, figsize=(11, 3 * nrows))\n"
             "for ax, group in zip(axes.ravel(), groups):\n"
             '    sub = my_df[my_df["panel_column"] == group]\n'
@@ -120,10 +117,7 @@ SECTIONS = [
         dataset="`data/qc_metrics.csv`",
         dataset_desc="96 rows. Per-sample sequencing QC for a 96-sample batch across 3 sub-batches.",
         image="figures/03_qc_dashboard.png",
-        code=(
-            'df = pd.read_csv("data/qc_metrics.csv")\n'
-            "fig = panels.qc_dashboard(df)"
-        ),
+        code=('df = pd.read_csv("data/qc_metrics.csv")\nfig = panels.qc_dashboard(df)'),
         interpretation=(
             "The scatter panel shows the same coverage-versus-"
             "duplication artifact seen in the Seaborn version of this "
@@ -181,7 +175,7 @@ SECTIONS = [
         requirements=[
             "an ordered x variable (usually time)",
             "one or more y series to animate, grouped by a category column",
-            "install `pillow` to export as GIF, or use `writer=\"ffmpeg\"` for MP4",
+            'install `pillow` to export as GIF, or use `writer="ffmpeg"` for MP4',
         ],
         adapt_code=(
             "fig, ax = plt.subplots()\n"
@@ -205,16 +199,12 @@ SECTIONS = [
             "activity falls off away from the optimum in each "
             "direction, which is harder to judge by eye on a flat map."
         ),
-        question=(
-            "How does enzyme activity depend jointly on pH and "
-            "temperature, and where is the optimum?"
-        ),
+        question=("How does enzyme activity depend jointly on pH and temperature, and where is the optimum?"),
         dataset="`data/enzyme_activity_surface.csv`",
         dataset_desc="625 rows. Enzyme activity sampled on a 25x25 grid of pH and temperature.",
         image="figures/05_enzyme_surface.png",
         code=(
-            'df = pd.read_csv("data/enzyme_activity_surface.csv")\n'
-            "fig = surface.enzyme_activity_surface(df)"
+            'df = pd.read_csv("data/enzyme_activity_surface.csv")\nfig = surface.enzyme_activity_surface(df)'
         ),
         interpretation=(
             "The surface has a single, fairly narrow peak near pH 7.4 "
@@ -232,10 +222,10 @@ SECTIONS = [
             "pivot to a 2D grid first (`pivot_table`), then use `np.meshgrid`",
         ],
         adapt_code=(
-            "piv = my_df.pivot_table(index=\"y_var\", columns=\"x_var\", values=\"z_var\")\n"
+            'piv = my_df.pivot_table(index="y_var", columns="x_var", values="z_var")\n'
             "x_grid, y_grid = np.meshgrid(piv.columns, piv.index)\n"
-            "ax = fig.add_subplot(projection=\"3d\")\n"
-            "ax.plot_surface(x_grid, y_grid, piv.to_numpy(), cmap=\"viridis\")"
+            'ax = fig.add_subplot(projection="3d")\n'
+            'ax.plot_surface(x_grid, y_grid, piv.to_numpy(), cmap="viridis")'
         ),
     ),
     dict(
@@ -258,10 +248,7 @@ SECTIONS = [
         dataset="`data/plasmid_map.csv`",
         dataset_desc="7 rows. A synthetic 5400bp expression plasmid's gene layout.",
         image="figures/06_plasmid_map.png",
-        code=(
-            'df = pd.read_csv("data/plasmid_map.csv")\n'
-            "fig, ax = diagrams.plasmid_map(df)"
-        ),
+        code=('df = pd.read_csv("data/plasmid_map.csv")\nfig, ax = diagrams.plasmid_map(df)'),
         interpretation=(
             "The map lays out an origin of replication, two resistance "
             "markers, a reporter gene, and their associated promoters "
@@ -279,8 +266,8 @@ SECTIONS = [
             "def bp_to_angle(bp, total_length):\n"
             "    return 90 - (bp / total_length) * 360\n\n"
             "for _, gene in my_df.iterrows():\n"
-            "    theta1 = bp_to_angle(gene[\"end_bp\"], total_length)\n"
-            "    theta2 = bp_to_angle(gene[\"start_bp\"], total_length)\n"
+            '    theta1 = bp_to_angle(gene["end_bp"], total_length)\n'
+            '    theta2 = bp_to_angle(gene["start_bp"], total_length)\n'
             "    ax.add_patch(Wedge((0, 0), 1.0, theta1, theta2, width=0.15))"
         ),
     ),
@@ -297,25 +284,18 @@ SECTIONS = [
             "length, and each internal node's vertical position from "
             "the mean of its children."
         ),
-        question=(
-            "What are the evolutionary relationships and relative "
-            "divergence times among 8 taxa?"
-        ),
+        question=("What are the evolutionary relationships and root-to-tip branch lengths among 8 taxa?"),
         dataset="`data/phylo_edges.csv`",
         dataset_desc="14 rows. A small phylogenetic tree for 8 taxa, encoded as parent-child edges.",
         image="figures/07_phylo_tree.png",
-        code=(
-            'df = pd.read_csv("data/phylo_edges.csv")\n'
-            "fig, ax = diagrams.phylo_tree(df)"
-        ),
+        code=('df = pd.read_csv("data/phylo_edges.csv")\nfig, ax = diagrams.phylo_tree(df)'),
         interpretation=(
-            "Taxon A and Taxon B are each other's closest relatives, "
-            "joining at the shallowest branch length in the tree. "
-            "Taxon C is the deepest-branching member of its clade, "
-            "splitting off before the E/F/G/H group diversifies "
-            "further. The x-axis position of each tip directly encodes "
-            "cumulative evolutionary distance from the root, which is "
-            "exactly what a phylogenetic tree diagram is meant to show."
+            "Taxon A and Taxon B are sister tips. Taxon D and Taxon H "
+            "form a second sister pair, with Taxon C branching before "
+            "that pair. In the other root clade, Taxon E is sister to "
+            "the Taxon F and Taxon G pair. Horizontal position encodes "
+            "cumulative branch length from the root; it is not a "
+            "divergence time unless the tree is calibrated independently."
         ),
         requirements=[
             "a parent column, a child column, and a branch length column",

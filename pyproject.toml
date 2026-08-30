@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bioplt"
-version = "1.0.0"
-description = "Matplotlib plotting utilities for biology and bioinformatics visualization, companion to biology-data-viz-seaborn."
+version = "1.1.0"
+description = "Tested Matplotlib components for custom biological and genomic figures."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "mbilal-OU" }]
 requires-python = ">=3.10"
 dependencies = [
@@ -17,7 +17,21 @@ dependencies = [
     "pillow>=10.0",
 ]
 
+[dependency-groups]
+dev = [
+    "build>=1.2",
+    "ipykernel>=6.29",
+    "jupyter>=1.0",
+    "jupytext>=1.16",
+    "mkdocs>=1.6",
+    "nbconvert>=7.16",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+
 [project.urls]
+Documentation = "https://mbilal-ou.github.io/biology-data-viz-matplotlib/"
 Repository = "https://github.com/mbilal-OU/biology-data-viz-matplotlib"
 Issues = "https://github.com/mbilal-OU/biology-data-viz-matplotlib/issues"
 
@@ -26,6 +40,7 @@ include = ["bioplt*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--cov=bioplt --cov-report=term-missing --cov-fail-under=95"
 
 [tool.ruff]
 line-length = 110

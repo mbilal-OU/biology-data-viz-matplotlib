@@ -3,6 +3,24 @@
 All notable changes to this project are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.1.0], 2026-08-29
+
+### Added
+- Topology-aligned phylogeny, metadata, and accessory-gene panels.
+- Pan- and core-genome accumulation curves with resampling uncertainty.
+- Directional gene-neighborhood and synteny diagrams.
+- Five deterministic genomics tables, an advanced case-study notebook,
+  raster and vector gallery exports, and scientific-method notes.
+- Strict documentation builds, GitHub Pages deployment, package builds,
+  a three-version Python matrix, and a 95% coverage gate.
+
+### Changed
+- Plasmid strand arrows follow the circular tangent and include a functional
+  legend.
+- Phylogenetic tip order follows topology and malformed trees are rejected.
+- Public documentation now distinguishes visualization from biological
+  inference and documents 3D readability tradeoffs.
+
 ## [1.0.0], 2026-08-28
 
 ### Added

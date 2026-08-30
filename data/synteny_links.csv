@@ -1,0 +1,12 @@
+source_genome,source_gene,target_genome,target_gene,identity
+Genome_Alpha,dnaK,Genome_Beta,dnaK,86
+Genome_Alpha,efflux,Genome_Beta,efflux,88
+Genome_Alpha,gyrB,Genome_Beta,gyrB,90
+Genome_Alpha,islandA,Genome_Beta,islandA,92
+Genome_Alpha,recA,Genome_Beta,recA,94
+Genome_Alpha,rpoB,Genome_Beta,rpoB,96
+Genome_Beta,dnaK,Genome_Gamma,dnaK,86
+Genome_Beta,gyrB,Genome_Gamma,gyrB,88
+Genome_Beta,islandA,Genome_Gamma,islandA,90
+Genome_Beta,recA,Genome_Gamma,recA,92
+Genome_Beta,rpoB,Genome_Gamma,rpoB,94

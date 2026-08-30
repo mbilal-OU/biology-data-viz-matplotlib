@@ -17,7 +17,7 @@ Example
 >>> fig, ax = scatter3d.docking_scatter_3d(df)
 """
 
-from . import theme  # noqa: F401
+from . import genome_tracks, pangenome, phylogenomics, theme  # noqa: F401
 from ._version import __version__  # noqa: F401
 
-__all__ = ["theme", "__version__"]
+__all__ = ["genome_tracks", "pangenome", "phylogenomics", "theme", "__version__"]

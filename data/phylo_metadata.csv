@@ -1,0 +1,9 @@
+taxon,lineage,habitat,genome_size_mb
+Taxon_A,Lineage_1,Host,4.8
+Taxon_B,Lineage_1,Host,4.7
+Taxon_C,Lineage_1,Water,5.1
+Taxon_D,Lineage_1,Soil,4.5
+Taxon_E,Lineage_2,Host,4.3
+Taxon_F,Lineage_2,Water,5.0
+Taxon_G,Lineage_2,Soil,4.9
+Taxon_H,Lineage_1,Water,4.6

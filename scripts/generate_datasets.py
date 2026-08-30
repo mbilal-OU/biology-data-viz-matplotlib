@@ -4,10 +4,9 @@ generate_datasets.py
 Simulates all datasets used in this repository. Three datasets
 (docking_scores, gene_expression, qc_metrics) use the same generation
 logic as the companion Seaborn repo (biology-data-viz-seaborn), so the
-same biological scenario can be viewed through both libraries. Four
-datasets are new, chosen specifically to need Matplotlib features that
-Seaborn does not expose directly: 3D scatter, animation, surface
-plots, and manually drawn diagrams.
+same biological scenario can be viewed through both libraries. The
+remaining tables support low-level Matplotlib techniques and advanced
+genomics case studies.
 
 Usage:
     python scripts/generate_datasets.py
@@ -67,16 +66,16 @@ def gen_docking_scores(n_per_target: int = 120) -> pd.DataFrame:
 def gen_gene_expression(n_replicates: int = 15) -> pd.DataFrame:
     """
     log2 expression for 6 genes under control vs. treatment, with
-    known up/down/null ground truth. Used here for a small-multiples
+    known up/down/unchanged ground truth. Used here for a small-multiples
     figure (one Axes per gene via plt.subplots), a layout Matplotlib
     controls directly rather than through a plotting function.
     """
     genes = {
         "TP53": ("down", -1.2),
         "MYC": ("up", 1.6),
-        "GAPDH": ("null", 0.0),
+        "GAPDH": ("unchanged", 0.0),
         "IL6": ("up", 2.1),
-        "ACTB": ("null", 0.05),
+        "ACTB": ("unchanged", 0.05),
         "CDKN1A": ("down", -0.8),
     }
     rows = []
@@ -243,15 +242,158 @@ def gen_phylo_edges() -> pd.DataFrame:
     dendrogram function, to show low-level layout control.
     """
     edges = [
-        ("root", "N1", 0.1), ("root", "N2", 0.15),
-        ("N1", "N3", 0.2), ("N1", "N4", 0.25),
-        ("N2", "Taxon_E", 0.4), ("N2", "N5", 0.2),
-        ("N3", "Taxon_A", 0.3), ("N3", "Taxon_B", 0.35),
-        ("N4", "Taxon_C", 0.45), ("N4", "N6", 0.15),
-        ("N5", "Taxon_F", 0.3), ("N5", "Taxon_G", 0.28),
-        ("N6", "Taxon_D", 0.2), ("N6", "Taxon_H", 0.22),
+        ("root", "N1", 0.1),
+        ("root", "N2", 0.15),
+        ("N1", "N3", 0.2),
+        ("N1", "N4", 0.25),
+        ("N2", "Taxon_E", 0.4),
+        ("N2", "N5", 0.2),
+        ("N3", "Taxon_A", 0.3),
+        ("N3", "Taxon_B", 0.35),
+        ("N4", "Taxon_C", 0.45),
+        ("N4", "N6", 0.15),
+        ("N5", "Taxon_F", 0.3),
+        ("N5", "Taxon_G", 0.28),
+        ("N6", "Taxon_D", 0.2),
+        ("N6", "Taxon_H", 0.22),
     ]
     return pd.DataFrame(edges, columns=["parent", "child", "branch_length"])
+
+
+def gen_phylogenomics_tables() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Create tree-tip metadata and a matched gene presence-absence matrix."""
+    taxa = [f"Taxon_{letter}" for letter in "ABCDEFGH"]
+    lineage = {
+        "Taxon_A": "Lineage_1",
+        "Taxon_B": "Lineage_1",
+        "Taxon_C": "Lineage_1",
+        "Taxon_D": "Lineage_1",
+        "Taxon_H": "Lineage_1",
+        "Taxon_E": "Lineage_2",
+        "Taxon_F": "Lineage_2",
+        "Taxon_G": "Lineage_2",
+    }
+    metadata = pd.DataFrame(
+        {
+            "taxon": taxa,
+            "lineage": [lineage[taxon] for taxon in taxa],
+            "habitat": ["Host", "Host", "Water", "Soil", "Host", "Water", "Soil", "Water"],
+            "genome_size_mb": [4.8, 4.7, 5.1, 4.5, 4.3, 5.0, 4.9, 4.6],
+        }
+    )
+
+    matrix = np.ones((len(taxa), 32), dtype=int)
+    for column in range(10, 20):
+        associated = "Lineage_1" if column < 15 else "Lineage_2"
+        for row, taxon in enumerate(taxa):
+            probability = 0.88 if lineage[taxon] == associated else 0.12
+            matrix[row, column] = RNG.binomial(1, probability)
+    matrix[:, 20:] = RNG.binomial(1, 0.30, size=(len(taxa), 12))
+    gene_matrix = pd.DataFrame(matrix, columns=[f"GF_{index:03d}" for index in range(32)])
+    gene_matrix.insert(0, "taxon", taxa)
+    return metadata, gene_matrix
+
+
+def gen_pangenome_accumulation(
+    n_genomes: int = 30,
+    n_replicates: int = 30,
+) -> pd.DataFrame:
+    """Simulate resampled pan- and core-genome accumulation curves."""
+    sample_sizes = np.arange(1, n_genomes + 1)
+    rows = []
+    for replicate in range(n_replicates):
+        pan_scale = RNG.normal(1.0, 0.025)
+        core_scale = RNG.normal(1.0, 0.018)
+        pan = (3100 + 520 * sample_sizes**0.55) * pan_scale
+        core = (3200 - 500 * np.log1p(sample_sizes)) * core_scale
+        pan += RNG.normal(0, 35, len(sample_sizes))
+        core += RNG.normal(0, 22, len(sample_sizes))
+        pan = np.maximum.accumulate(np.rint(pan)).astype(int)
+        core = np.minimum.accumulate(np.rint(core)).astype(int)
+        rows.append(
+            pd.DataFrame(
+                {
+                    "replicate": replicate,
+                    "n_genomes": sample_sizes,
+                    "pan_genes": pan,
+                    "core_genes": core,
+                }
+            )
+        )
+    return pd.concat(rows, ignore_index=True)
+
+
+def gen_synteny_tables() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Create three related gene neighborhoods and pairwise homology links."""
+    colors = {
+        "recombination": "#0072B2",
+        "chaperone": "#D55E00",
+        "island": "#009E73",
+        "topoisomerase": "#CC79A7",
+        "transcription": "#E69F00",
+        "efflux": "#56B4E9",
+        "novel": "#777777",
+    }
+    specifications = {
+        "Genome_Alpha": [
+            ("recA", "recombination", 500, 1300, "+"),
+            ("dnaK", "chaperone", 1500, 2450, "+"),
+            ("islandA", "island", 2700, 3400, "+"),
+            ("gyrB", "topoisomerase", 3650, 4550, "-"),
+            ("rpoB", "transcription", 4800, 5900, "+"),
+            ("efflux", "efflux", 6200, 7200, "+"),
+        ],
+        "Genome_Beta": [
+            ("recA", "recombination", 400, 1200, "+"),
+            ("dnaK", "chaperone", 1400, 2350, "+"),
+            ("islandA", "island", 2550, 3250, "-"),
+            ("gyrB", "topoisomerase", 3500, 4400, "-"),
+            ("rpoB", "transcription", 4650, 5750, "+"),
+            ("efflux", "efflux", 6000, 7000, "+"),
+        ],
+        "Genome_Gamma": [
+            ("recA", "recombination", 600, 1400, "+"),
+            ("dnaK", "chaperone", 1620, 2570, "+"),
+            ("novelX", "novel", 2750, 3300, "+"),
+            ("islandA", "island", 3500, 4200, "+"),
+            ("gyrB", "topoisomerase", 4450, 5350, "-"),
+            ("rpoB", "transcription", 5600, 6700, "+"),
+        ],
+    }
+    rows = []
+    for genome, features in specifications.items():
+        for gene, family, start, end, strand in features:
+            rows.append(
+                {
+                    "genome": genome,
+                    "gene": gene,
+                    "family": family,
+                    "start_bp": start,
+                    "end_bp": end,
+                    "strand": strand,
+                    "color": colors[family],
+                }
+            )
+    genes = pd.DataFrame(rows)
+
+    links = []
+    for source_genome, target_genome in [
+        ("Genome_Alpha", "Genome_Beta"),
+        ("Genome_Beta", "Genome_Gamma"),
+    ]:
+        source_genes = set(genes.loc[genes["genome"] == source_genome, "gene"])
+        target_genes = set(genes.loc[genes["genome"] == target_genome, "gene"])
+        for index, gene in enumerate(sorted(source_genes & target_genes)):
+            links.append(
+                {
+                    "source_genome": source_genome,
+                    "source_gene": gene,
+                    "target_genome": target_genome,
+                    "target_gene": gene,
+                    "identity": 86 + (index * 2) % 13,
+                }
+            )
+    return genes, pd.DataFrame(links)
 
 
 def main() -> None:
@@ -262,6 +404,13 @@ def main() -> None:
     save(gen_enzyme_activity_surface(), "enzyme_activity_surface.csv")
     save(gen_plasmid_map(), "plasmid_map.csv")
     save(gen_phylo_edges(), "phylo_edges.csv")
+    metadata, gene_matrix = gen_phylogenomics_tables()
+    save(metadata, "phylo_metadata.csv")
+    save(gene_matrix, "phylo_gene_presence.csv")
+    save(gen_pangenome_accumulation(), "pangenome_accumulation.csv")
+    synteny_genes, synteny_links = gen_synteny_tables()
+    save(synteny_genes, "synteny_genes.csv")
+    save(synteny_links, "synteny_links.csv")
 
 
 if __name__ == "__main__":
