@@ -184,6 +184,11 @@ ordination, and compositional-data examples are covered in the companion
 [biology-data-viz-seaborn](https://github.com/mbilal-OU/biology-data-viz-seaborn)
 repository.
 
+## Portfolio series
+
+- [Seaborn](https://github.com/mbilal-OU/biology-data-viz-seaborn) · **Matplotlib** · [Plotly](https://github.com/mbilal-OU/Biology-data-viz-plotly)
+- [ggplot2](https://github.com/mbilal-OU/Biology-data-viz-ggplot2) · [ggtree + ComplexHeatmap](https://github.com/mbilal-OU/Biology-data-viz-ggtree-complexheatmap) · [Shiny](https://github.com/mbilal-OU/Biology-data-viz-shiny) · [Gnuplot](https://github.com/mbilal-OU/biology-data-viz-gnuplot)
+
 ## Citation and license
 
 Citation metadata are provided in [`CITATION.cff`](CITATION.cff). The code is
