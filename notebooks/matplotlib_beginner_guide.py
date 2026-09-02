@@ -5,7 +5,7 @@
 # Seaborn call cannot: 3D plots, animation, custom multi-panel
 # layouts, and manually drawn diagrams. Three datasets (docking
 # scores, gene expression, sequencing QC) are shared with the
-# companion Seaborn repo, biology-data-viz-seaborn, so the same
+# companion Seaborn repo, seaborn-biological-statistics, so the same
 # biological scenario can be compared across both libraries. Four
 # datasets are new, chosen specifically because they need a
 # Matplotlib-only technique.
@@ -237,4 +237,4 @@ plt.show()
 # Next steps: see `CONTRIBUTING.md` to add a new technique or dataset,
 # or explore `bioplt/` directly to reuse these functions in your own
 # analysis. For the Seaborn-based version of the shared datasets, see
-# the companion repository, biology-data-viz-seaborn.
+# the companion repository, seaborn-biological-statistics.

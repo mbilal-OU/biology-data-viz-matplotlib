@@ -3,7 +3,7 @@ bioplt
 ======
 A small, importable Matplotlib plotting toolkit for biology and
 bioinformatics visualization. Companion package to `bioviz` in the
-biology-data-viz-seaborn repository, focused specifically on
+seaborn-biological-statistics repository, focused specifically on
 techniques that need raw Matplotlib: 3D plots, animation, custom
 multi-panel layouts (GridSpec), and manually drawn diagrams that have
 no equivalent Seaborn function.

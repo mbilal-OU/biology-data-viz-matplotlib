@@ -58,6 +58,6 @@
   <line x1="830" y1="260" x2="830" y2="240" stroke="#999999" stroke-width="1" stroke-dasharray="4,4"/>
   <line x1="1080" y1="260" x2="1080" y2="220" stroke="#999999" stroke-width="1" stroke-dasharray="4,4"/>
 
-  <text x="600" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222222">biology-data-viz-matplotlib pipeline</text>
+  <text x="600" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222222">matplotlib-genomic-figures pipeline</text>
   <text x="600" y="50" text-anchor="middle" font-size="12" fill="#555555">Seeded simulation, tested plotting package, narrative notebook, publication figures, checked in CI</text>
 </svg>

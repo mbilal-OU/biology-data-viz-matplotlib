@@ -28,7 +28,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
   importable `bioplt` package (`scatter3d`, `panels`, `animation`,
   `surface`, `diagrams` modules).
 - 7 simulated datasets in `data/`, 3 shared with the companion
-  biology-data-viz-seaborn repository (docking_scores,
+  seaborn-biological-statistics repository (docking_scores,
   gene_expression, qc_metrics) and 4 new (growth_curves,
   enzyme_activity_surface, plasmid_map, phylo_edges), each generated
   deterministically by `scripts/generate_datasets.py` with a

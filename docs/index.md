@@ -9,8 +9,8 @@ layout or geometry must encode scientific structure directly.
 - [Gallery](gallery.md): ten rendered examples and their design rationale
 - [Methods and interpretation](methods.md): transformations, encodings, and limits
 - [Setup](setup.md): reproducible installation and validation
-- [Data dictionary](https://github.com/mbilal-OU/biology-data-viz-matplotlib/blob/main/data/data_dictionary.md): every generated column
-- [Advanced notebook](https://github.com/mbilal-OU/biology-data-viz-matplotlib/blob/main/notebooks/scientific_figure_case_studies.ipynb): three genomics case studies
+- [Data dictionary](https://github.com/mbilal-OU/matplotlib-genomic-figures/blob/main/data/data_dictionary.md): every generated column
+- [Advanced notebook](https://github.com/mbilal-OU/matplotlib-genomic-figures/blob/main/notebooks/scientific_figure_case_studies.ipynb): three genomics case studies
 
 ## What this repository demonstrates
 

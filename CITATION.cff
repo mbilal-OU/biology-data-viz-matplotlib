@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this repository in teaching, coursework, or research, please cite it as below."
-title: "Biology Data Visualization with Matplotlib"
+title: "Genomic Figure Engineering with Matplotlib"
 type: software
 authors:
   - name: "mbilal-OU"
-repository-code: "https://github.com/mbilal-OU/biology-data-viz-matplotlib"
+repository-code: "https://github.com/mbilal-OU/matplotlib-genomic-figures"
 license: MIT
 version: 1.1.0
 date-released: "2026-08-29"

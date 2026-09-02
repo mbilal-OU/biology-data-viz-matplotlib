@@ -3,7 +3,7 @@ generate_datasets.py
 =====================
 Simulates all datasets used in this repository. Three datasets
 (docking_scores, gene_expression, qc_metrics) use the same generation
-logic as the companion Seaborn repo (biology-data-viz-seaborn), so the
+logic as the companion Seaborn repo (seaborn-biological-statistics), so the
 same biological scenario can be viewed through both libraries. The
 remaining tables support low-level Matplotlib techniques and advanced
 genomics case studies.
@@ -29,7 +29,7 @@ def save(df: pd.DataFrame, name: str) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Shared datasets (same logic as biology-data-viz-seaborn)
+# Shared datasets (same logic as seaborn-biological-statistics)
 # ---------------------------------------------------------------------------
 def gen_docking_scores(n_per_target: int = 120) -> pd.DataFrame:
     """

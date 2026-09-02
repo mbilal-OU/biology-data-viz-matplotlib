@@ -31,9 +31,9 @@ dev = [
 ]
 
 [project.urls]
-Documentation = "https://mbilal-ou.github.io/biology-data-viz-matplotlib/"
-Repository = "https://github.com/mbilal-OU/biology-data-viz-matplotlib"
-Issues = "https://github.com/mbilal-OU/biology-data-viz-matplotlib/issues"
+Documentation = "https://mbilal-ou.github.io/matplotlib-genomic-figures/"
+Repository = "https://github.com/mbilal-OU/matplotlib-genomic-figures"
+Issues = "https://github.com/mbilal-OU/matplotlib-genomic-figures/issues"
 
 [tool.setuptools.packages.find]
 include = ["bioplt*"]

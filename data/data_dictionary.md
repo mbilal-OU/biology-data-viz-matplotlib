@@ -4,14 +4,14 @@ All datasets in this repository are simulated (not real experimental
 data) using [`scripts/generate_datasets.py`](../scripts/generate_datasets.py),
 with a fixed random seed (`np.random.default_rng(42)`) so results are
 exactly reproducible. Three datasets use the same generation logic as
-the companion Seaborn repository, biology-data-viz-seaborn, so the
+the companion Seaborn repository, seaborn-biological-statistics, so the
 same biological scenario can be compared across both libraries. Nine
 additional tables support low-level Matplotlib techniques and advanced
 genomics case studies.
 
 ---
 
-### `docking_scores.csv` (360 rows), shared with biology-data-viz-seaborn
+### `docking_scores.csv` (360 rows), shared with seaborn-biological-statistics
 Simulated virtual-screening results against 3 protein targets.
 
 | Column | Type | Description |
@@ -27,7 +27,7 @@ Used here for a 3D scatter plot (logP, molecular weight, vina score).
 The 3D view is treated as exploratory and paired with a discussion of
 its perspective and occlusion tradeoffs.
 
-### `gene_expression.csv` (180 rows), shared with biology-data-viz-seaborn
+### `gene_expression.csv` (180 rows), shared with seaborn-biological-statistics
 log2 expression for 6 genes, control vs. treatment, 15 replicates per condition.
 
 | Column | Type | Description |
@@ -40,7 +40,7 @@ log2 expression for 6 genes, control vs. treatment, 15 replicates per condition.
 
 Used here for a small-multiples figure, one Matplotlib Axes per gene.
 
-### `qc_metrics.csv` (96 rows), shared with biology-data-viz-seaborn
+### `qc_metrics.csv` (96 rows), shared with seaborn-biological-statistics
 Per-sample sequencing QC for a 96-sample batch across 3 sub-batches.
 
 | Column | Type | Description |

@@ -3,8 +3,8 @@
 ## macOS and Linux
 
 ```bash
-git clone https://github.com/mbilal-OU/biology-data-viz-matplotlib.git
-cd biology-data-viz-matplotlib
+git clone https://github.com/mbilal-OU/matplotlib-genomic-figures.git
+cd matplotlib-genomic-figures
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -15,8 +15,8 @@ python -m pip install -e .
 ## Windows PowerShell
 
 ```powershell
-git clone https://github.com/mbilal-OU/biology-data-viz-matplotlib.git
-Set-Location biology-data-viz-matplotlib
+git clone https://github.com/mbilal-OU/matplotlib-genomic-figures.git
+Set-Location matplotlib-genomic-figures
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip

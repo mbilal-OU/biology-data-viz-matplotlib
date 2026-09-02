@@ -6,8 +6,8 @@ explanations, or bug fixes.
 ## Setup
 
 ```bash
-git clone https://github.com/mbilal-OU/biology-data-viz-matplotlib.git
-cd biology-data-viz-matplotlib
+git clone https://github.com/mbilal-OU/matplotlib-genomic-figures.git
+cd matplotlib-genomic-figures
 pip install -r requirements.txt
 pip install -e .
 ```
@@ -27,7 +27,7 @@ pip install -e .
 - **New techniques should need real Matplotlib, not duplicate
   Seaborn.** Before adding a plot type here, check whether it already
   has a good Seaborn equivalent. If it does, it belongs in the
-  companion repository, biology-data-viz-seaborn, instead. This repo
+  companion repository, seaborn-biological-statistics, instead. This repo
   is specifically for what Seaborn cannot do directly: 3D, animation,
   custom multi-Axes layouts, and manually drawn diagrams.
 - **Tests**: add both a rendering smoke test and, where the data has

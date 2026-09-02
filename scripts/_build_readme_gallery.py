@@ -17,7 +17,7 @@ SECTIONS = [
         num="1",
         title="3D Scatter: Docking Landscape in Three Dimensions",
         plot_kind="3D scatter (mpl_toolkits.mplot3d)",
-        shared="Shared with biology-data-viz-seaborn (same dataset, new dimension).",
+        shared="Shared with seaborn-biological-statistics (same dataset, new dimension).",
         what_it_is=(
             "Seaborn has no 3D plotting function at all. A true 3D "
             "scatter needs `mpl_toolkits.mplot3d`, accessed directly "
@@ -58,7 +58,7 @@ SECTIONS = [
         num="2",
         title="Small Multiples: One Panel Per Gene",
         plot_kind="plt.subplots grid",
-        shared="Shared with biology-data-viz-seaborn (same dataset, different layout).",
+        shared="Shared with seaborn-biological-statistics (same dataset, different layout).",
         what_it_is=(
             "`plt.subplots` gives direct control over a grid of "
             "independent Axes, useful when each panel needs its own "
@@ -102,7 +102,7 @@ SECTIONS = [
         num="3",
         title="Custom Dashboard: Sequencing QC in One Figure",
         plot_kind="GridSpec multi-panel dashboard",
-        shared="Shared with biology-data-viz-seaborn (same dataset, different layout).",
+        shared="Shared with seaborn-biological-statistics (same dataset, different layout).",
         what_it_is=(
             "`GridSpec` allows Axes of different sizes and aspect "
             "ratios to sit in one figure, for example a large scatter "
