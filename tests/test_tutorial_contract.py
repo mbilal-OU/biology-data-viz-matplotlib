@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 FIGURES = [
     "01_docking_3d.png",
     "02_gene_expression_panels.png",
